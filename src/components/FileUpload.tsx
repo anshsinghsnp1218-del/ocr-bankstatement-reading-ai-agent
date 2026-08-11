@@ -235,34 +235,48 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                   />
                 )
               ) : selectedSample ? (
-                /* Sample Mock Preview Visual */
-                <div className="w-full max-w-lg bg-white border border-slate-200 rounded-lg p-5 shadow-xs text-left font-mono text-xs space-y-3 text-slate-700">
-                  <div className="border-b pb-2 flex justify-between items-center text-slate-900 font-sans font-bold text-sm">
-                    <span>{selectedSample.bankName}</span>
-                    <span className="text-xs text-slate-500 font-mono">{selectedSample.accountNumber}</span>
+                /* Sample Formatted Table Preview Visual */
+                <div className="w-full max-w-2xl bg-white border border-slate-200/90 rounded-xl p-4 shadow-2xs text-left text-xs space-y-3 text-slate-700">
+                  <div className="border-b pb-2 flex justify-between items-center text-slate-900 font-bold text-sm">
+                    <span className="text-blue-700 font-semibold">{selectedSample.bankName}</span>
+                    <span className="text-xs text-slate-500 font-mono bg-slate-100 px-2 py-0.5 rounded">{selectedSample.accountNumber}</span>
                   </div>
-                  <div className="text-[11px] text-slate-500 font-sans">
+                  <div className="text-[11px] text-slate-500">
                     Statement Period: <span className="font-semibold text-slate-700">{selectedSample.statementPeriod}</span>
                   </div>
-                  <div className="bg-slate-50 border rounded p-2 text-[11px] space-y-1.5">
-                    <div className="grid grid-cols-12 font-bold border-b pb-1 text-slate-800">
-                      <span className="col-span-3">DATE</span>
-                      <span className="col-span-6">DESCRIPTION</span>
-                      <span className="col-span-3 text-right">AMOUNT</span>
-                    </div>
-                    {selectedSample.transactions.slice(0, 4).map((tx, idx) => (
-                      <div key={idx} className="grid grid-cols-12 text-slate-600">
-                        <span className="col-span-3">{tx.date}</span>
-                        <span className="col-span-6 truncate pr-1">{tx.description}</span>
-                        <span className={`col-span-3 text-right font-medium ${tx.amount < 0 ? 'text-red-600' : 'text-emerald-600'}`}>
-                          {tx.amount < 0 ? `-₹${Math.abs(tx.amount)}` : `+₹${tx.amount}`}
-                        </span>
-                      </div>
-                    ))}
-                    <div className="text-[10px] text-slate-400 italic text-center pt-1">
-                      + {selectedSample.transactions.length - 4} more transactions ready for extraction
-                    </div>
+                  <div className="border border-slate-200 rounded-lg overflow-hidden">
+                    <table className="w-full text-left border-collapse text-[11px]">
+                      <thead>
+                        <tr className="bg-[#f0f4f8] text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+                          <th className="py-2 px-3">DATE ⇅</th>
+                          <th className="py-2 px-3">DESCRIPTION ⇅</th>
+                          <th className="py-2 px-3 text-right">AMOUNT ⇅</th>
+                          <th className="py-2 px-3">CATEGORY ⇅</th>
+                          <th className="py-2 px-3">NOTES</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {selectedSample.transactions.slice(0, 5).map((tx, idx) => (
+                          <tr key={idx} className="hover:bg-slate-50">
+                            <td className="py-2 px-3 font-mono text-slate-600 font-medium whitespace-nowrap">{tx.date}</td>
+                            <td className="py-2 px-3 font-bold text-slate-800 uppercase tracking-tight max-w-[160px] truncate">{tx.description}</td>
+                            <td className={`py-2 px-3 text-right font-mono font-bold whitespace-nowrap ${tx.amount < 0 ? 'text-rose-600' : 'text-emerald-600'}`}>
+                              {tx.amount < 0 ? `-${Math.abs(tx.amount).toFixed(2)}` : `+${tx.amount.toFixed(2)}`}
+                            </td>
+                            <td className="py-2 px-3 whitespace-nowrap">
+                              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-600 border border-emerald-300">
+                                {tx.category}
+                              </span>
+                            </td>
+                            <td className="py-2 px-3 text-slate-500 max-w-[120px] truncate">{tx.notes}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
+                  <p className="text-[11px] text-slate-500 text-center font-medium italic">
+                    + {selectedSample.transactions.length - 5} more transactions ready for OCR extraction
+                  </p>
                 </div>
               ) : (
                 <p className="text-xs text-slate-400">Preview not available</p>

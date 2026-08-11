@@ -52,22 +52,22 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Transaction | null>(null);
 
-  // Category badge colors mapping
+  // Category badge colors mapping matching reference image
   const categoryColors: Record<TransactionCategory, string> = {
-    Food: 'bg-amber-50 text-amber-700 border-amber-200',
-    Shopping: 'bg-purple-50 text-purple-700 border-purple-200',
-    Transportation: 'bg-blue-50 text-blue-700 border-blue-200',
-    'Bills & Utilities': 'bg-indigo-50 text-indigo-700 border-indigo-200',
-    Rent: 'bg-red-50 text-red-700 border-red-200',
-    Salary: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    Transfer: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    'ATM/Cash Withdrawal': 'bg-orange-50 text-orange-700 border-orange-200',
-    'Bank Charges': 'bg-slate-100 text-slate-700 border-slate-300',
-    Investment: 'bg-teal-50 text-teal-700 border-teal-200',
-    Healthcare: 'bg-rose-50 text-rose-700 border-rose-200',
-    Education: 'bg-sky-50 text-sky-700 border-sky-200',
-    Entertainment: 'bg-pink-50 text-pink-700 border-pink-200',
-    Other: 'bg-gray-100 text-gray-700 border-gray-200'
+    Food: 'bg-amber-50 text-amber-600 border-amber-300',
+    Shopping: 'bg-purple-50 text-purple-600 border-purple-200',
+    Transportation: 'bg-blue-50 text-blue-600 border-blue-200',
+    'Bills & Utilities': 'bg-indigo-50 text-indigo-600 border-indigo-200',
+    Rent: 'bg-rose-50 text-rose-600 border-rose-200',
+    Salary: 'bg-emerald-50 text-emerald-600 border-emerald-300',
+    Transfer: 'bg-cyan-50 text-cyan-600 border-cyan-200',
+    'ATM/Cash Withdrawal': 'bg-amber-50 text-amber-600 border-amber-300',
+    'Bank Charges': 'bg-slate-50 text-slate-600 border-slate-300',
+    Investment: 'bg-emerald-50 text-emerald-600 border-emerald-300',
+    Healthcare: 'bg-rose-50 text-rose-600 border-rose-200',
+    Education: 'bg-sky-50 text-sky-600 border-sky-200',
+    Entertainment: 'bg-pink-50 text-pink-600 border-pink-200',
+    Other: 'bg-slate-100 text-slate-600 border-slate-200'
   };
 
   // Filtered and sorted transactions
@@ -264,57 +264,57 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
       </div>
 
       {/* Main Table */}
-      <div className="overflow-x-auto border border-slate-200 rounded-xl">
+      <div className="overflow-x-auto border border-slate-200/90 rounded-2xl bg-white shadow-2xs">
         <table id="table-bank-transactions" className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-slate-100/90 text-slate-700 text-xs font-semibold uppercase tracking-wider border-b border-slate-200 select-none">
+            <tr className="bg-[#f0f4f8] text-slate-700 text-xs font-bold uppercase tracking-wider border-b border-slate-200/80 select-none">
               <th
                 onClick={() => handleSort('date')}
-                className="py-3 px-4 cursor-pointer hover:bg-slate-200/80 transition-colors"
+                className="py-3.5 px-5 cursor-pointer hover:bg-slate-200/70 transition-colors"
               >
-                <div className="flex items-center gap-1">
-                  <span>Date</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+                <div className="flex items-center gap-1.5">
+                  <span>DATE</span>
+                  <span className="text-slate-400 font-normal text-sm">⇅</span>
                 </div>
               </th>
 
               <th
                 onClick={() => handleSort('description')}
-                className="py-3 px-4 cursor-pointer hover:bg-slate-200/80 transition-colors"
+                className="py-3.5 px-5 cursor-pointer hover:bg-slate-200/70 transition-colors"
               >
-                <div className="flex items-center gap-1">
-                  <span>Description</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+                <div className="flex items-center gap-1.5">
+                  <span>DESCRIPTION</span>
+                  <span className="text-slate-400 font-normal text-sm">⇅</span>
                 </div>
               </th>
 
               <th
                 onClick={() => handleSort('amount')}
-                className="py-3 px-4 text-right cursor-pointer hover:bg-slate-200/80 transition-colors"
+                className="py-3.5 px-5 text-right cursor-pointer hover:bg-slate-200/70 transition-colors"
               >
-                <div className="flex items-center justify-end gap-1">
-                  <span>Amount</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+                <div className="flex items-center justify-end gap-1.5">
+                  <span>AMOUNT</span>
+                  <span className="text-slate-400 font-normal text-sm">⇅</span>
                 </div>
               </th>
 
               <th
                 onClick={() => handleSort('category')}
-                className="py-3 px-4 cursor-pointer hover:bg-slate-200/80 transition-colors"
+                className="py-3.5 px-5 cursor-pointer hover:bg-slate-200/70 transition-colors"
               >
-                <div className="flex items-center gap-1">
-                  <span>Category</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+                <div className="flex items-center gap-1.5">
+                  <span>CATEGORY</span>
+                  <span className="text-slate-400 font-normal text-sm">⇅</span>
                 </div>
               </th>
 
-              <th className="py-3 px-4">Notes</th>
+              <th className="py-3.5 px-5">NOTES</th>
 
-              <th className="py-3 px-4 text-center">Actions</th>
+              <th className="py-3.5 px-5 text-center">ACTIONS</th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-slate-100 text-xs text-slate-800">
+          <tbody className="divide-y divide-slate-100/80 text-xs text-slate-800">
             {paginatedTransactions.length === 0 ? (
               <tr>
                 <td colSpan={6} className="py-12 text-center text-slate-400">
@@ -329,44 +329,44 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                   return (
                     <tr key={t.id} className="bg-blue-50/60 border-l-4 border-l-blue-600">
                       {/* Edit Date */}
-                      <td className="p-2">
+                      <td className="p-3">
                         <input
                           type="text"
                           value={editForm.date}
                           onChange={(e) => setEditForm({ ...editForm, date: e.target.value })}
-                          className="w-full p-1.5 border rounded border-blue-300 text-xs bg-white focus:outline-none"
+                          className="w-full p-2 border rounded-lg border-blue-300 text-xs bg-white focus:outline-none"
                         />
                       </td>
 
                       {/* Edit Description */}
-                      <td className="p-2">
+                      <td className="p-3">
                         <input
                           type="text"
                           value={editForm.description}
                           onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
-                          className="w-full p-1.5 border rounded border-blue-300 text-xs bg-white focus:outline-none"
+                          className="w-full p-2 border rounded-lg border-blue-300 text-xs bg-white focus:outline-none font-bold uppercase"
                         />
                       </td>
 
                       {/* Edit Amount */}
-                      <td className="p-2">
+                      <td className="p-3">
                         <input
                           type="number"
                           step="0.01"
                           value={editForm.amount}
                           onChange={(e) => setEditForm({ ...editForm, amount: parseFloat(e.target.value) || 0 })}
-                          className="w-full p-1.5 border rounded border-blue-300 text-xs text-right font-mono bg-white focus:outline-none"
+                          className="w-full p-2 border rounded-lg border-blue-300 text-xs text-right font-mono bg-white focus:outline-none font-bold"
                         />
                       </td>
 
                       {/* Edit Category */}
-                      <td className="p-2">
+                      <td className="p-3">
                         <select
                           value={editForm.category}
                           onChange={(e) =>
                             setEditForm({ ...editForm, category: e.target.value as TransactionCategory })
                           }
-                          className="w-full p-1.5 border rounded border-blue-300 text-xs bg-white focus:outline-none"
+                          className="w-full p-2 border rounded-lg border-blue-300 text-xs bg-white focus:outline-none"
                         >
                           {CATEGORIES.map((c) => (
                             <option key={c} value={c}>
@@ -377,28 +377,28 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                       </td>
 
                       {/* Edit Notes */}
-                      <td className="p-2">
+                      <td className="p-3">
                         <input
                           type="text"
                           value={editForm.notes}
                           onChange={(e) => setEditForm({ ...editForm, notes: e.target.value })}
-                          className="w-full p-1.5 border rounded border-blue-300 text-xs bg-white focus:outline-none"
+                          className="w-full p-2 border rounded-lg border-blue-300 text-xs bg-white focus:outline-none"
                         />
                       </td>
 
                       {/* Save/Cancel */}
-                      <td className="p-2 text-center">
-                        <div className="flex items-center justify-center gap-1">
+                      <td className="p-3 text-center">
+                        <div className="flex items-center justify-center gap-1.5">
                           <button
                             onClick={handleSaveEdit}
-                            className="p-1.5 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition-colors"
+                            className="p-1.5 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors"
                             title="Save"
                           >
                             <Check className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={handleCancelEdit}
-                            className="p-1.5 bg-slate-200 text-slate-700 rounded hover:bg-slate-300 transition-colors"
+                            className="p-1.5 bg-slate-200 text-slate-700 rounded-md hover:bg-slate-300 transition-colors"
                             title="Cancel"
                           >
                             <X className="w-3.5 h-3.5" />
@@ -412,20 +412,20 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                 return (
                   <tr
                     key={t.id}
-                    className="hover:bg-slate-50/80 transition-colors group"
+                    className="hover:bg-slate-50/70 transition-colors group"
                   >
                     {/* Date */}
-                    <td className="py-3 px-4 font-mono font-medium text-slate-700 whitespace-nowrap">
+                    <td className="py-4 px-5 font-mono text-slate-600 font-medium text-xs sm:text-sm whitespace-nowrap">
                       {t.date}
                     </td>
 
                     {/* Description */}
-                    <td className="py-3 px-4 font-medium text-slate-900 max-w-xs sm:max-w-md break-words">
+                    <td className="py-4 px-5 font-bold text-slate-800 text-xs uppercase tracking-tight max-w-xs sm:max-w-md leading-relaxed">
                       {t.description}
                     </td>
 
                     {/* Amount */}
-                    <td className={`py-3 px-4 text-right font-mono font-bold whitespace-nowrap ${
+                    <td className={`py-4 px-5 text-right font-mono font-bold text-xs sm:text-sm whitespace-nowrap ${
                       t.amount < 0 ? 'text-rose-600' : 'text-emerald-600'
                     }`}>
                       {t.amount < 0
@@ -434,9 +434,9 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                     </td>
 
                     {/* Category */}
-                    <td className="py-3 px-4 whitespace-nowrap">
+                    <td className="py-4 px-5 whitespace-nowrap">
                       <span
-                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${
+                        className={`inline-block px-3 py-1 rounded-full text-[11px] font-semibold border ${
                           categoryColors[t.category] || categoryColors.Other
                         }`}
                       >
@@ -445,13 +445,13 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                     </td>
 
                     {/* Notes */}
-                    <td className="py-3 px-4 text-slate-500 max-w-xs truncate">
+                    <td className="py-4 px-5 text-slate-500 font-normal text-xs max-w-xs truncate">
                       {t.notes || <span className="text-slate-300 italic">—</span>}
                     </td>
 
                     {/* Actions */}
-                    <td className="py-3 px-4 text-center whitespace-nowrap">
-                      <div className="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+                    <td className="py-4 px-5 text-center whitespace-nowrap">
+                      <div className="flex items-center justify-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={() => handleStartEdit(t)}
                           className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors cursor-pointer"
