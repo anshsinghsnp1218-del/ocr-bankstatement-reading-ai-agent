@@ -1,0 +1,6 @@
+{
+  "name": "Bank Statement AI",
+  "description": "Upload your bank statement and automatically extract transactions using AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
